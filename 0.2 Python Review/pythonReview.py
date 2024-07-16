@@ -1,22 +1,22 @@
-title=input("what is the video's title?")
-description=input("what is the video's description?")
-video={"title":title, "description":description, "likes":0, "dislikes":0, "comments":{}}
-def create_youtube_video():
-	print(video)
+
+def create_youtube_video(title, description):
+	video={"title":title, "description":description, "likes":0, "dislikes":0, "comments":{}}
+	return(video)
 
 def like():
 	if "likes" in video:
 		video["likes"]=video["likes"]+1
-	print(video)
+	return(video)
 
 def dislike():
 	if "dislikes" in video:
 		video["dislikes"]=video["dislikes"]+1
-	print(video)
+	return(video)
 
-def add_comment():
-	username=input("what is your name?")
-	comment_text=input("what is your comment?")
+def add_comment(username, comment_text):
 	video["comments"].update({username:comment_text})
-	print(video)
+	return(video)
+
+def new_video():
+	create_youtube_video()
 
