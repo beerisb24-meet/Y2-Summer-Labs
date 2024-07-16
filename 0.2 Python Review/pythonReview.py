@@ -18,5 +18,8 @@ def add_comment(username, comment_text):
 	return(video)
 
 def new_video():
-	create_youtube_video()
+	create_youtube_video("title","description")
+	for i in range(456):
+		like()
+	add_comment("Be'eri", "hello")
 
