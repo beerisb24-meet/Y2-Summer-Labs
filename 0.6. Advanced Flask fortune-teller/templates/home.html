@@ -4,7 +4,10 @@
 <body>
 	<title>Welcome to your fortune teller!</title>
 	<p>Here, you will learn your fortune.</p>
-	<a href="/fortune">to learn your fortune</a>
+	<form action="/" method="POST">
+		<input type="text" placeholder="type birth month here" id="birthMonth" name="birthMonth">
+		<input type="submit" name="birthMonth" value="tell me my fortune">
+	</form>
 </body>
 
 </html>
