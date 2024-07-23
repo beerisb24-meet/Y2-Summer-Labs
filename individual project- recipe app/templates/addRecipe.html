@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<a href="/home"><button>Home</button></a>
+	<h4>{{error}}</h4>
+	<form action="/addRecipe" method="POST">
+		<input type="text" name="recipeName" placeholder="Recipe Name">{{name}}</input><br>
+		<textarea name="notes" placeholder="Notes">{{notes}}</textarea><br>
+		<textarea name="ingredients" placeholder="Ingredients">{{ingredients}}</textarea><br>
+		<textarea name="instructions" placeholder="Recipe Instructions">{{instructions}}</textarea><br>
+		<input type="radio" name='foodType' value="Breakfast">Breakfast</input>
+		<input type="radio" name='foodType' value="Dessert">Dessert</input>
+		<input type="radio" name='foodType' value="Salad">Salad</input>
+		<input type="radio" name='foodType' value="Soup">Soup</input>
+		<input type="radio" name='foodType' value="Snack">Snack</input>
+		<input type="radio" name='foodType' value="Quick Meal">Quick Meal</input>
+		<input type="radio" name='foodType' value="Appetizer">Appetizer</input>
+		<input type="radio" name='foodType' value="Main dish">Main Dish</input>
+		<input type="radio" name='foodType' value="Drink">Drink</input><br>
+
+		<input type="submit" name="submit" value="Submit">
+	</form>	
+</body>
+</html>

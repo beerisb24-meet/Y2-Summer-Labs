@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<h1>name of app</h1>
+	<a href='/signout'><button>Sign Out</button></a>
+	<a href="/addRecipe"><button>Add Recipe</button></a>
+	<a href='/myRecipe'><button>My Recipes</button></a>
+	<br>
+	<h3>Recipes</h3>
+	<form action='/home' method="POST">
+		{%if recipes!=None%}
+		{%for i in recipes%}
+		<input type="submit" name='chooseRecipe' value={{recipes[i]['name']}}>
+		{%endfor%}
+		{%endif%}
+	</form>
+</body>
+</html>
