@@ -8,8 +8,8 @@
 <body>
 	<h1>QUOTES</h1>
 	<ol>
-		{% for i in quotes %}
-		<li>{{i}}</li>
+		{% for quote in quotes %}
+		<li>{{quotes[quote]['said_by']}} : {{quotes[quote]['text']}} </li>
 		{% endfor %}
 	</ol>
 	<a href='/home'>home</a>

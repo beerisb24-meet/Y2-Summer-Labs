@@ -25,13 +25,13 @@ def signup():
 	if request.method=='GET':
 		return render_template('signup.html')
 	else:
-		#userId=login_session['user']['localId']
+		userId=login_session['user']['localId']
 		email=request.form['email']
 		password=request.form['password']
-		#full_name=request.form['full_name']
-		#username=request.form['username']
-		#user={"email":email, "password":password, "full_name":full_name, "username":username}
-		#db.child("Users").child(userId).set(user)
+		full_name=request.form['full_name']
+		username=request.form['username']
+		user={"email":email, "password":password, "full_name":full_name, "username":username}
+		db.child("Users").child(userId).set(user)
 		try:
 			login_session['user'] = auth.create_user_with_email_and_password(email, password)
 
@@ -59,8 +59,11 @@ def home():
 	if request.method=='GET':
 		return render_template('home.html')
 	else:
-		quote=request.form['quote']
-		login_session['quotes']+=[quote]
+		uid=login_session['user']['localId']
+		said_by=request.form['said_by']
+		text=request.form['quote']
+		quote={'said_by':said_by, 'text':text, 'uid':uid}
+		db.child("Users").child("quotes").push(quote)
 		return redirect(url_for('thanks'))
 
 @app.route('/signout')
@@ -75,7 +78,8 @@ def thanks():
 
 @app.route('/display')
 def display():
-	quotes=login_session['quotes']
+	uid=login_session['user']['localId']
+	quotes=db.child('Users').child('quotes').get().val()
 	return render_template('display.html',quotes=quotes)
 
 
