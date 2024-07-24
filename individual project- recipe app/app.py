@@ -88,7 +88,7 @@ def addRecipe():
 		else:
 			name=db.child('Users').child(uid).child('name').get().val()
 			recipe={'author':name, 'name':recipeName, 'notes':notes, 'ingredients':ingredients, 'instructions':instructions}
-			db.child('Users').child(uid).child('recipe').push(recipe)
+			db.child('Users').child(uid).child('recipes').push(recipe)
 			db.child('recipes').push(recipe)
 			return redirect(url_for('home'))
 
@@ -126,6 +126,7 @@ def myRecipes():
 		user=db.child('Users').child(uid).child('name').get().val()
 		recipes=db.child('Users').child(uid).child('recipes').get().val()
 		print(uid)
+		print(recipes)
 		return render_template('myRecipes.html', user=user, recipes=recipes)
 	else:
 		recipes=db.child('Users').child(uid).child('recipes').get().val()
