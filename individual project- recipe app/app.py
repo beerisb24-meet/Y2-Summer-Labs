@@ -144,6 +144,7 @@ def myRecipes():
 				
 		return render_template('home.html', error="There are no existing recipes.")
 
+'''
 @app.route('/delete', methods=['GET','POST'])
 def delete():
 	if request.method=='GET':
@@ -179,6 +180,7 @@ def delete():
 			return redirect(url_for('myRecipes', user=user))	
 		return render_template('home.html', error="There are no existing recipes.")
 
+'''
 
 if __name__ == '__main__':
     app.run(debug=True)
