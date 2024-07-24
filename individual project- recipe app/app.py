@@ -112,7 +112,7 @@ def home():
 					recipeId=i
 					return redirect(url_for('showRecipe', recipeId=recipeId))
 					
-		return render_template('home.html', error="There are no existing recipes.")
+		return render_template('home.html', error="Something went wrong.")
 
 @app.route('/showRecipe/<recipeId>')
 def showRecipe(recipeId):
@@ -141,8 +141,44 @@ def myRecipes():
 					print(f"recipeName: {recipeName}, id: {i}")
 					recipeId=i
 					return redirect(url_for('showRecipe', recipeId=recipeId))
-					
+				
 		return render_template('home.html', error="There are no existing recipes.")
+
+@app.route('/delete', methods=['GET','POST'])
+def delete():
+	if request.method=='GET':
+		uid=login_session['user']['localId']
+		recipes=db.child('Users').child(uid).child('recipes').get().val()
+		print(recipes)
+		return render_template('delete.html', recipes=recipes)
+	else:
+		uid=login_session['user']['localId']
+		myRecipes=db.child('Users').child(uid).child('recipes').get().val()
+		allRecipes=db.child('recipes').get().val()
+		deleteRecipe=request.form.getlist('deleteRecipe')
+		print(deleteRecipe)
+		if deleteRecipe!=None:
+			print("recipes is not none")
+			toDelete=[]
+			for recipe in deleteRecipe:
+				for a in allRecipes.values():
+					ar=allRecipes.get(a)
+					arName=ar.get('name')
+					mr=myRecipes.get(recipe)
+					mrName=mr.get('name')
+					if mrName==arName:
+						toDelete.append(a)
+						return toDelete
+				myRecipes.pop(recipe)
+			for b in toDelete:
+				for c in allRecipes.values():
+					if c==b:
+						allRecipes.pop(c)
+			uid=login_session['user']['localId']
+			user=db.child('Users').child(uid).child('name').get().val()
+			return redirect(url_for('myRecipes', user=user))	
+		return render_template('home.html', error="There are no existing recipes.")
+
 
 if __name__ == '__main__':
     app.run(debug=True)

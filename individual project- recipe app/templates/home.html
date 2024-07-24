@@ -1,24 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ecd7; /* Light pastel yellow */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 20px;
+        }
+        .top-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .top-buttons a {
+            text-decoration: none;
+        }
+        .top-button {
+    		background-color: #f0c4c4; /* Light pink */
+	    color: #d94a4a; /* Reddish-pink */
+	    border: none;
+	    padding: 10px 20px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    cursor: pointer;
+	    border-radius: 4px;
+	    margin-right: 20px; /* Increase the margin-right to create more space */
+	    transition: background-color 0.3s ease;
+		}
+        .top-button:hover {
+            background-color: #e0b4b4; /* Slightly darker shade of pink on hover */
+        }
+        .top-button:last-child {
+            margin-right: 0;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        input[type="submit"] {
+            background-color: #d94a4a; /* Reddish-pink */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #b73737; /* Darker shade of reddish-pink */
+        }
+        h3 {
+            text-align: center;
+            color: #d94a4a; /* Reddish-pink */
+            margin-top: 20px;
+        }
+        h5 {
+            text-align: center;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-	<h1>Cook Book</h1>
-	<a href='/signout'><button>Sign Out</button></a>
-	<a href="/addRecipe"><button>Add Recipe</button></a>
-	<a href='/myRecipes'><button>My Recipes</button></a>
-	<br>
-	<h3>Recipes</h3>
-	<h5>{{error}}</h5>
-	<form action='/home' method="POST">
-		{%if recipes!=None%}
-		{%for i in recipes%}
-		<input type="submit" name='chooseRecipe' value={{recipes[i]['name']}}>
-		{%endfor%}
-		{%endif%}
-	</form>
+    <h1>CookBook</h1>
+    <div class="top-buttons">
+        <a href='/signout'><button class="top-button">Sign Out</button></a>
+        <a href="/addRecipe"><button class="top-button">Add Recipe</button></a>
+        <a href='/myRecipes'><button class="top-button">My Recipes</button></a>
+    </div>
+    <div class="form-container">
+        <h3>Recipes</h3>
+        <h5>{{error}}</h5>
+        <form action='/home' method="POST">
+            {% if recipes != None %}
+                {% for i in recipes %}
+                    <input type="submit" name='chooseRecipe' value="{{ recipes[i]['name'] }}">
+                {% endfor %}
+            {% endif %}
+        </form>
+    </div>
 </body>
 </html>

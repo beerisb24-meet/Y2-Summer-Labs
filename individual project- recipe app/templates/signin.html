@@ -1,17 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ecd7; /* Light pastel yellow */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1, h3 {
+            text-align: center;
+            color: #d94a4a; /* Reddish-pink */
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            max-width: 90%;
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #d94a4a; /* Reddish-pink */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="submit"]:hover {
+            background-color: #b73737; /* Darker shade of reddish-pink */
+        }
+        p {
+            text-align: center;
+            color: #555;
+            margin-top: 10px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #d94a4a; /* Reddish-pink */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-	<form action="/signin" method="POST">
-		<input type="text" name="email" placeholder="email"><br>
-		<input type="text" name="password" placeholder="password"><br>
-		<input type="submit" name="submit" value="submit">
-	</form>
-	<p>{{error}}</p>
-	<a href="/">don't have an account? sign up</a>
+    <h1>CookBook</h1>
+    <h3>Sign In</h3>
+    <form action="/signin" method="POST">
+        <input type="text" name="email" placeholder="Email"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+    <p>{{error}}</p>
+    <a href="/">Don't have an account? Sign up</a>
 </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete Recipes - CookBook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ecd7; /* Light pastel yellow */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        form {
+            max-width: 600px; /* Adjust max-width as needed */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        label {
+            color: #555;
+        }
+        input[type="submit"] {
+            background-color: #d94a4a; /* Reddish-pink */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Full width for submit button */
+            max-width: 200px; /* Adjust max-width as needed */
+        }
+        input[type="submit"]:hover {
+            background-color: #b73737; /* Darker shade of reddish-pink */
+        }
+    </style>
+</head>
+<body>
+    <form action='/delete' method="POST">
+        {% if recipes != None %}
+            {% for i in recipes %}
+                <input type="checkbox" id="{{ i }}" name="deleteRecipe" value="{{ i }}">
+                <label for="{{ i }}">{{ recipes[i]['name'] }}</label><br>
+            {% endfor %}
+        {% endif %}
+        <input type="submit" name="delete" value="Delete">
+    </form>
+</body>
+</html>

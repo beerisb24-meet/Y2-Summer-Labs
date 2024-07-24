@@ -1,30 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Recipe - CookBook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ecd7; /* Light pastel yellow */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 20px;
+        }
+        h4 {
+            text-align: center;
+            color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px; /* Adjust max-width as needed */
+        }
+        input[type="text"],
+        textarea,
+        input[type="submit"],
+        input[type="radio"] {
+            width: 100%;
+            max-width: 600px; /* Adjust max-width as needed */
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #d94a4a; /* Reddish-pink */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #b73737; /* Darker shade of reddish-pink */
+        }
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            margin: 0 5px; /* Adjust spacing between radio inputs */
+        }
+        a {
+            text-decoration: none;
+            color: #d94a4a; /* Reddish-pink */
+        }
+        button {
+            background-color: #f0c4c4; /* Light pink */
+            color: #d94a4a; /* Reddish-pink */
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e0b4b4; /* Slightly darker shade of pink on hover */
+        }
+    </style>
 </head>
 <body>
-	<a href="/home"><button>Home</button></a>
-	<a href='/signout'><button>Sign Out</button></a>
-	<h4>{{error}}</h4>
-	<form action="/addRecipe" method="POST">
-		<input type="text" name="recipeName" placeholder="Recipe Name"><br>
-		<textarea name="notes" placeholder="Notes" rows="4" cols="75">{{notes}}</textarea><br>
-		<textarea name="ingredients" rows="7" cols="75" placeholder="Ingredients">{{ingredients}}</textarea><br>
-		<textarea name="instructions" rows="8" cols="75" placeholder="Recipe Instructions">{{instructions}}</textarea><br>
-		<input type="radio" name='foodType' value="Breakfast">Breakfast</input>
-		<input type="radio" name='foodType' value="Dessert">Dessert</input>
-		<input type="radio" name='foodType' value="Salad">Salad</input>
-		<input type="radio" name='foodType' value="Soup">Soup</input>
-		<input type="radio" name='foodType' value="Snack">Snack</input>
-		<input type="radio" name='foodType' value="Quick Meal">Quick Meal</input>
-		<input type="radio" name='foodType' value="Appetizer">Appetizer</input>
-		<input type="radio" name='foodType' value="Main dish">Main Dish</input>
-		<input type="radio" name='foodType' value="Drink">Drink</input><br>
-
-		<input type="submit" name="submit" value="Submit">
-	</form>	
+    <a href="/home"><button>Home</button></a>
+    <a href="/signout"><button>Sign Out</button></a>
+    <h1>CookBook</h1>
+    <h4>{{error}}</h4>
+    <form action="/addRecipe" method="POST">
+        <input type="text" name="recipeName" placeholder="Recipe Name" value="{{recipeName}}">
+        <textarea name="notes" placeholder="Notes" rows="4" cols="75">{{notes}}</textarea>
+        <textarea name="ingredients" rows="7" cols="75" placeholder="Ingredients">{{ingredients}}</textarea>
+        <textarea name="instructions" rows="8" cols="75" placeholder="Recipe Instructions">{{instructions}}</textarea><br>
+        
+        <div class="radio-group">
+            <input type="radio" name="foodType" value="Breakfast">Breakfast
+            <input type="radio" name="foodType" value="Dessert">Dessert
+            <input type="radio" name="foodType" value="Salad">Salad
+            <input type="radio" name="foodType" value="Soup">Soup
+            <input type="radio" name="foodType" value="Snack">Snack
+            <input type="radio" name="foodType" value="Quick Meal">Quick Meal
+            <input type="radio" name="foodType" value="Appetizer">Appetizer
+            <input type="radio" name="foodType" value="Main dish">Main Dish
+            <input type="radio" name="foodType" value="Drink">Drink
+        </div>
+        
+        <input type="submit" name="submit" value="Submit">
+    </form> 
 </body>
 </html>

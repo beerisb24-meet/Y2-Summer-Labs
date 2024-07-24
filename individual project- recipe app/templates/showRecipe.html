@@ -1,20 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recipe Details - CookBook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ecd7; /* Light pastel yellow */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 10px;
+        }
+        h2, h3 {
+            text-align: center;
+            color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 5px;
+        }
+        p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        a {
+            text-decoration: none;
+            color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #f0c4c4; /* Light pink */
+            color: #d94a4a; /* Reddish-pink */
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e0b4b4; /* Slightly darker shade of pink on hover */
+        }
+    </style>
 </head>
 <body>
-	<a href='/home'><button>Home</button></a>
-	<a href='/signout'><button>Sign Out</button></a>
-	<h1>{{name}}</h1>
-	<h2>{{author}}</h2>
-	<h3>Notes:</h3>
-	<p>{{notes}}</p>
-	<h3>Ingredients:</h3>
-	<p>{{ingredients}}</p>
-	<h3>Recipe Instructions:</h3>
-	<p>{{instructions}}</p>
+    <a href='/home'><button>Home</button></a>
+    <a href='/signout'><button>Sign Out</button></a>
+    <h1>CookBook</h1>
+    <h2>{{name}}</h2>
+    <h3>{{author}}</h3>
+    <h3>Notes:</h3>
+    <p>{{notes}}</p>
+    <h3>Ingredients:</h3>
+    <p>{{ingredients}}</p>
+    <h3>Recipe Instructions:</h3>
+    <p>{{instructions}}</p>
 </body>
 </html>

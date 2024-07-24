@@ -1,20 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User's Recipes - CookBook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7ecd7; /* Light pastel yellow */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 600px; /* Adjust max-width as needed */
+        }
+        input[type="submit"] {
+            background-color: #d94a4a; /* Reddish-pink */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Full width for submit buttons */
+            max-width: 400px; /* Adjust max-width as needed */
+        }
+        input[type="submit"]:hover {
+            background-color: #b73737; /* Darker shade of reddish-pink */
+        }
+        a {
+            text-decoration: none;
+            color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #f0c4c4; /* Light pink */
+            color: #d94a4a; /* Reddish-pink */
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #e0b4b4; /* Slightly darker shade of pink on hover */
+        }
+    </style>
 </head>
 <body>
-	<a href='/home'><button>Home</button></a>
-	<a href='/signout'><button>Sign Out</button></a>
-	<h1>{{user}}'s Recipes</h1>
-	<form action='/home' method="POST">
-		{%if recipes!=None%}
-		{%for i in recipes%}
-		<input type="submit" name='chooseRecipe' value={{recipes[i]['name']}}>
-		{%endfor%}
-		{%endif%}
-	</form>
+    <a href='/home'><button>Home</button></a>
+    <a href='/signout'><button>Sign Out</button></a>
+    <a href='/addRecipe'><button>Add Recipe</button></a>
+    <a href='/delete'><button>Delete Recipes</button></a>
+    <h1>{{user}}'s Recipes</h1>
+    <form action='/home' method="POST">
+        {% if recipes != None %}
+            {% for i in recipes %}
+                <input type="submit" name='chooseRecipe' value="{{ recipes[i]['name'] }}">
+            {% endfor %}
+        {% endif %}
+    </form>
 </body>
 </html>
