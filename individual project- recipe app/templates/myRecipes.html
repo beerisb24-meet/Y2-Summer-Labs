@@ -6,13 +6,7 @@
 	<title></title>
 </head>
 <body>
-	<h1>Cook Book</h1>
-	<a href='/signout'><button>Sign Out</button></a>
-	<a href="/addRecipe"><button>Add Recipe</button></a>
-	<a href='/myRecipes'><button>My Recipes</button></a>
-	<br>
-	<h3>Recipes</h3>
-	<h5>{{error}}</h5>
+	<h1>{{user}}'s Recipes</h1>
 	<form action='/home' method="POST">
 		{%if recipes!=None%}
 		{%for i in recipes%}
