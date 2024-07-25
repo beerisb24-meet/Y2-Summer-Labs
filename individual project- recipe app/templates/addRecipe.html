@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Recipe - CookBook</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7ecd7; /* Light pastel yellow */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffbf6; /* Light cream */
             margin: 0;
             padding: 20px;
             display: flex;
@@ -17,7 +17,9 @@
         h1 {
             text-align: center;
             color: #d94a4a; /* Reddish-pink */
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         h4 {
             text-align: center;
@@ -29,26 +31,39 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 600px; /* Adjust max-width as needed */
+            max-width: 800px; /* Adjust max-width as needed */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
         input[type="text"],
-        textarea,
-        input[type="submit"],
-        input[type="radio"] {
-            width: 100%;
+        textarea {
+            width: calc(100% - 24px);
             max-width: 600px; /* Adjust max-width as needed */
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 14px;
+            margin: 10px 0;
+            border: 2px solid #f0c4c4; /* Light pink */
+            border-radius: 8px;
             box-sizing: border-box;
-            font-size: 16px;
+            font-size: 1.2rem;
+            background-color: #fff8f8; /* Light pink tint */
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d94a4a; /* Reddish-pink */
         }
         input[type="submit"] {
             background-color: #d94a4a; /* Reddish-pink */
             color: white;
             border: none;
             cursor: pointer;
+            padding: 16px 24px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
         input[type="submit"]:hover {
             background-color: #b73737; /* Darker shade of reddish-pink */
@@ -57,26 +72,43 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
-        input[type="radio"] {
-            margin: 0 5px; /* Adjust spacing between radio inputs */
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"]:checked + span {
+            font-weight: bold;
+            color: #d94a4a; /* Reddish-pink */
         }
         a {
             text-decoration: none;
             color: #d94a4a; /* Reddish-pink */
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #b73737; /* Darker shade of reddish-pink on hover */
         }
         button {
             background-color: #f0c4c4; /* Light pink */
             color: #d94a4a; /* Reddish-pink */
             border: none;
-            padding: 10px 20px;
+            padding: 14px 28px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
+            font-size: 1.2rem;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 8px;
             margin-right: 10px;
             transition: background-color 0.3s ease;
         }
@@ -91,21 +123,21 @@
     <h1>CookBook</h1>
     <h4>{{error}}</h4>
     <form action="/addRecipe" method="POST">
-        <input type="text" name="recipeName" placeholder="Recipe Name" value="{{recipeName}}">
-        <textarea name="notes" placeholder="Notes" rows="4" cols="75">{{notes}}</textarea>
-        <textarea name="ingredients" rows="7" cols="75" placeholder="Ingredients">{{ingredients}}</textarea>
-        <textarea name="instructions" rows="8" cols="75" placeholder="Recipe Instructions">{{instructions}}</textarea><br>
+        <input type="text" name="recipeName" placeholder="Recipe Name" value="{{recipeName}}" required>
+        <textarea name="notes" placeholder="Notes" rows="4" required>{{notes}}</textarea>
+        <textarea name="ingredients" rows="7" placeholder="Ingredients" required>{{ingredients}}</textarea>
+        <textarea name="instructions" rows="8" placeholder="Recipe Instructions" required>{{instructions}}</textarea>
         
         <div class="radio-group">
-            <input type="radio" name="foodType" value="Breakfast">Breakfast
-            <input type="radio" name="foodType" value="Dessert">Dessert
-            <input type="radio" name="foodType" value="Salad">Salad
-            <input type="radio" name="foodType" value="Soup">Soup
-            <input type="radio" name="foodType" value="Snack">Snack
-            <input type="radio" name="foodType" value="Quick Meal">Quick Meal
-            <input type="radio" name="foodType" value="Appetizer">Appetizer
-            <input type="radio" name="foodType" value="Main dish">Main Dish
-            <input type="radio" name="foodType" value="Drink">Drink
+            <label><input type="radio" name="foodType" value="Breakfast"> Breakfast</label>
+            <label><input type="radio" name="foodType" value="Dessert"> Dessert</label>
+            <label><input type="radio" name="foodType" value="Salad"> Salad</label>
+            <label><input type="radio" name="foodType" value="Soup"> Soup</label>
+            <label><input type="radio" name="foodType" value="Snack"> Snack</label>
+            <label><input type="radio" name="foodType" value="Quick Meal"> Quick Meal</label>
+            <label><input type="radio" name="foodType" value="Appetizer"> Appetizer</label>
+            <label><input type="radio" name="foodType" value="Main dish"> Main Dish</label>
+            <label><input type="radio" name="foodType" value="Drink"> Drink</label>
         </div>
         
         <input type="submit" name="submit" value="Submit">

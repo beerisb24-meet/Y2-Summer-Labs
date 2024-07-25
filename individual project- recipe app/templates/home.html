@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recipes</title>
+    <title>Recipes - CookBook</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7ecd7; /* Light pastel yellow */
+            font-family: 'Arial', sans-serif;
+            background-color: #fff7e6; /* Light peach */
             margin: 0;
             padding: 20px;
             display: flex;
@@ -18,6 +18,8 @@
             text-align: center;
             color: #d94a4a; /* Reddish-pink */
             margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         .top-buttons {
             display: flex;
@@ -28,27 +30,34 @@
             text-decoration: none;
         }
         .top-button {
-    		background-color: #f0c4c4; /* Light pink */
-	    color: #d94a4a; /* Reddish-pink */
-	    border: none;
-	    padding: 10px 20px;
-	    text-align: center;
-	    text-decoration: none;
-	    display: inline-block;
-	    font-size: 16px;
-	    cursor: pointer;
-	    border-radius: 4px;
-	    margin-right: 20px; /* Increase the margin-right to create more space */
-	    transition: background-color 0.3s ease;
-		}
+            background-color: #ffb3ba; /* Light coral */
+            color: #d94a4a; /* Reddish-pink */
+            border: none;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 20px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
         .top-button:hover {
-            background-color: #e0b4b4; /* Slightly darker shade of pink on hover */
+            background-color: #ff8c94; /* Darker coral on hover */
         }
         .top-button:last-child {
             margin-right: 0;
         }
         .form-container {
             margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
         }
         form {
             display: flex;
@@ -59,14 +68,16 @@
             background-color: #d94a4a; /* Reddish-pink */
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 12px 24px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
+            font-size: 1.2rem;
             margin: 8px;
             cursor: pointer;
             border-radius: 4px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         input[type="submit"]:hover {
             background-color: #b73737; /* Darker shade of reddish-pink */
@@ -75,11 +86,13 @@
             text-align: center;
             color: #d94a4a; /* Reddish-pink */
             margin-top: 20px;
+            font-size: 1.5rem;
         }
         h5 {
             text-align: center;
             color: #555;
             margin-top: 10px;
+            font-size: 1rem;
         }
     </style>
 </head>
