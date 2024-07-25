@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!---<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -72,12 +72,9 @@
 <body>
     <a href='/home'><button>Home</button></a>
     <a href='/signout'><button>Sign Out</button></a>
-    <a href='/addRecipe'><button>Add Recipe</button></a>
-    <!--<a href='/delete'><button>Delete Recipes</button></a>
-    <a href='/edit'><button>Edit Recipes</button></a>-->
-
     <h1>{{user}}'s Recipes</h1>
-    <form action='/home' method="POST">
+    <h2>Click on the ones you wish to edit:</h2>
+    <form action='/edit' method="POST">
         {% if recipes != None %}
             {% for i in recipes %}
                 <input type="submit" name='chooseRecipe' value="{{ recipes[i]['name'] }}">

@@ -143,8 +143,79 @@ def myRecipes():
 					return redirect(url_for('showRecipe', recipeId=recipeId))
 				
 		return render_template('home.html', error="There are no existing recipes.")
-
 '''
+@app.route('/edit', methods=['GET','POST'])
+def edit():
+	if request.method=='GET':
+		uid=login_session['user']['localId']
+		user=db.child('Users').child(uid).child('name').get().val()
+		recipes=db.child('Users').child(uid).child('recipes').get().val()
+		print(uid)
+		print(recipes)
+		return render_template('edit.html', user=user, recipes=recipes)
+	else:
+		uid=login_session['user']['localId']
+		recipes=db.child('Users').child(uid).child('recipes').get().val()
+		recipeName=request.form['chooseRecipe']
+		print(recipeName)
+		print(recipes)
+		if recipes!=None:
+			print("recipes is not none")
+			for i in recipes:
+				print(recipes[i])
+				if recipeName == recipes[i]['name']:
+					print(f"recipeName: {recipeName}, id: {i}")
+					recipeId=i
+					return redirect(url_for('editRecipe', recipeId=recipeId))
+				
+		return render_template('home.html', error="There are no existing recipes.")
+
+@app.route('/editRecipe/<recipeId>', methods=['GET', 'POST'])
+def editRecipe(recipeId):
+	if request.method=="GET":
+		uid=login_session['user']['localId']
+		recipes=db.child('Users').child(uid).child('recipes').get().val()
+		recipe=recipes[recipeId]
+		return render_template('editRecipe.html', recipeName=recipe['name'], notes=recipe['notes'], ingredients=recipe['ingredients'], instructions=recipe['instructions'])
+	else:
+		uid=login_session['user']['localId']
+		recipeName=request.form['recipeName']
+		notes=request.form['notes']
+		ingredients=request.form['ingredients']
+		instructions=request.form['instructions']
+		recipes=db.child('Users').child(uid).child('recipes').get().val()
+		if recipes!=None:
+			for i in recipes:
+				if recipeName == recipes[i]['name']:
+					return render_template('editRecipe.html', error="This recipe name already exists. Please choose a different name.", notes=notes, ingredients=ingredients, instructions=instructions)
+				else:
+					name=db.child('Users').child(uid).child('name').get().val()
+					recipeDict={'author':name, 'name':recipeName, 'notes':notes, 'ingredients':ingredients, 'instructions':instructions}
+					recipes.remove(recipe)
+					db.child('Users').child(uid).child('recipes').push(recipeDict)
+					allrecipes=db.child('recipes').get().val()
+					for i in allrecipes:
+						iname=allrecipes[i]['name']
+						rname=recipes[recipeId]['name']
+						if iname==rname:
+							allrecipes.remove(i)
+					db.child('recipes').push(recipeDict)
+					return redirect(url_for('myRecipes', user=user, recipes=recipes))
+		else:
+			name=db.child('Users').child(uid).child('name').get().val()
+			recipeDict={'author':name, 'name':recipeName, 'notes':notes, 'ingredients':ingredients, 'instructions':instructions}
+			recipes.remove(recipe)
+			db.child('Users').child(uid).child('recipes').push(recipeDict)
+			allrecipes=db.child('recipes').get().val()
+			for i in allrecipes:
+				iname=allrecipes[i]['name']
+				rname=recipes[recipeId]['name']
+				if iname==rname:
+					allrecipes.remove(i)
+			db.child('recipes').push(recipeDict)
+			return redirect(url_for('myRecipes',user=user, recipes=recipes))
+
+
 @app.route('/delete', methods=['GET','POST'])
 def delete():
 	if request.method=='GET':
